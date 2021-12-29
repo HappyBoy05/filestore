@@ -69,8 +69,7 @@ async def storefile_channel(c, m):
     media = m.document or m.video or m.audio or m.photo
 
  text = ""
-
-text += f"__📢 Channel Name:__ `{m.chat.title}`\n\n"
+    text += f"__📢 Channel Name:__ `{m.chat.title}`\n\n"
     text += f"__🗣 User Name:__ @{m.chat.username}\n\n" if m.chat.username else ""
     text += f"__👤 Channel Id:__ `{m.chat.id}`\n\n"
     text += f"__💬 DC ID:__ {m.chat.dc_id}\n\n" if m.chat.dc_id else ""
