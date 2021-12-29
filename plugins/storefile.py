@@ -68,13 +68,20 @@ async def storefile_channel(c, m):
             return
     media = m.document or m.video or m.audio or m.photo
 
- 
+ text = ""
+
+text += f"__📢 Channel Name:__ `{m.chat.title}`\n\n"
+    text += f"__🗣 User Name:__ @{m.chat.username}\n\n" if m.chat.username else ""
+    text += f"__👤 Channel Id:__ `{m.chat.id}`\n\n"
+    text += f"__💬 DC ID:__ {m.chat.dc_id}\n\n" if m.chat.dc_id else ""
+    text += f"__👁 Members Count:__ {m.chat.members_count}\n\n" if m.chat.members_count else ""
 
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))
+       await msg.reply(text)
       # creating urls
-    bot = c.get_me()
+    bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
     url = f"https://t.me/Tgfilestorerobot?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
