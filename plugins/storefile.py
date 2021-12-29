@@ -13,28 +13,10 @@ async def storefile(c, m):
             return
     send_message = await m.reply_text("**Processing...**", quote=True)
     media = m.document or m.video or m.audio or m.photo
-    bot = await c.get_me()
-    base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
-    # text
-    text = ""
-    if not m.photo:
-        text = "--**🗃️ File Details:**--\n\n\n"
-        text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
-        text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
-        text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
-        if not m.document:
-            text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
-            if m.audio:
-                text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
-                text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-    text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
-    text += f"Link - `{url}`"
-
 
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))
-        await msg.reply(text)
 
     # creating urls
     bot = await c.get_me()
@@ -50,6 +32,20 @@ async def storefile(c, m):
         ],[
         InlineKeyboardButton(text="Delete 🗑", callback_data=f"delete+{msg.message_id}")
     ]]
+    # text
+     text = ""
+    if not m.photo:
+        text = "--**🗃️ File Details:**--\n\n\n"
+        text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
+        text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+        text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
+        if not m.document:
+            text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
+            if m.audio:
+                text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
+                text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+    text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
+    text += f"Link - `{url}`"
 
     # sending message
     await send_message.edit(
