@@ -73,7 +73,8 @@ async def storefile_channel(c, m):
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))
-    # creating urls
+     await msg.reply(text)
+      # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
     url = f"https://t.me/Tgfilestorerobot?start={base64_string}"
