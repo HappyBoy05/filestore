@@ -26,7 +26,7 @@ async def storefile(c, m):
                 text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
                 text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
     text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
-    text += f"Link - `url`"
+    text += f"Link - `{url}`"
 
 
     # if databacase channel exist forwarding message to channel
