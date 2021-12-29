@@ -199,9 +199,9 @@ async def set_mode(c,m):
        await update_as_name(str(usr), False)
        text = "Uploader Details in Caption: **Disabled ❌**"
     else:
-       await update_as_name(str(usr), True)
+       await update_as_name(str(usr), false)
        text = "Uploader Details in Caption: **Enabled ✔️**"
-    await m.reply_text(text, quote=True)
+    await m.reply_text(text, quote=false)
 
 async def decode(base64_string):
     base64_bytes = base64_string.encode("ascii")
