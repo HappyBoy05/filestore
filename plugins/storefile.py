@@ -41,9 +41,9 @@ async def storefile(c, m):
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
-    url = f"https://t.me/Tgfilestorerobot?start={base64_string}"
+    url = f"https://t.me/{bot.username}?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
-    share_url = f"tg://share?url={url}"
+    share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
 
     # making buttons
     buttons = [[
@@ -68,7 +68,20 @@ async def storefile_channel(c, m):
             return
     media = m.document or m.video or m.audio or m.photo
 
- text =
+    # text
+    text = ""
+    if not m.photo:
+        text = "**🗃️ File Details:**\n\n\n"
+        text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
+        text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+        text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
+        if not m.document:
+            text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
+            if m.audio:
+                text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
+                text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+    text += f"__✏ Caption:__ `{m.caption}`\n\n"
+    text += "**Uploader Details:**\n\n\n"
     text += f"__📢 Channel Name:__ `{m.chat.title}`\n\n"
     text += f"__🗣 User Name:__ @{m.chat.username}\n\n" if m.chat.username else ""
     text += f"__👤 Channel Id:__ `{m.chat.id}`\n\n"
@@ -78,13 +91,14 @@ async def storefile_channel(c, m):
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))
-       await msg.reply(text)
-      # creating urls
+        await msg.reply(text)
+
+    # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
-    url = f"https://t.me/Tgfilestorerobot?start={base64_string}"
+    url = f"https://t.me/{bot.username}?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
-    share_url = f"tg://share?url={url}"
+    share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
 
     # making buttons
     buttons = [[
