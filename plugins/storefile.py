@@ -13,6 +13,8 @@ async def storefile(c, m):
             return
     send_message = await m.reply_text("**Processing...**", quote=True)
     media = m.document or m.video or m.audio or m.photo
+    bot = await c.get_me()
+    base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
     # text
     text = ""
     if not m.photo:
