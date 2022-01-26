@@ -53,9 +53,21 @@ async def start(c, m, cb=False):
         if msg.empty:
             owner = await c.get_users(int(OWNER_ID))
             return await m.reply_text(f"🥴 Sorry bro your file was missing\n\nPlease contact my owner 👉 {owner.mention(style='md')}")
-        
-       await msg.copy(m.from_user.id)
 
+        
+        caption = f"{msg.caption.markdown}\n\n\n" if msg.caption else ""
+        as_uploadername = (await get_data(str(chat_id))).up_name
+        if as_uploadername:
+            if chat_id.startswith('-100'):
+                channel = await c.get_chat(int(chat_id))
+                caption += "**For More @HB4All**\n\n" 
+                
+             else:
+                user = await c.get_users(int(chat_id)) 
+                caption += "**For More @HB4All **\n\n" 
+       await send_msg.delete()
+       await msg.copy(m.from_user.id, caption=caption)
+       
     else: # sending start message
         await m.reply_text(
             text=text,
