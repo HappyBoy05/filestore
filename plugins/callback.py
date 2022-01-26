@@ -70,8 +70,6 @@ async def about_cb(c, m):
 📢 𝐂𝐡𝐚𝐧𝐧𝐞𝐥: [HB4All](https://t.me/HB4All)
 
 👥 𝐆𝐫𝐨𝐮𝐩: [HB4All Support](https://t.me/HB4All_support)
-
-🌐𝐒𝐨𝐮𝐫𝐜𝐞 𝐂𝐨𝐝𝐞: [Press Me 🥰](https://github.com/Ns-Bots/TG-File-Store)
 """
 
     # creating buttons
