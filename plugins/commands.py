@@ -31,7 +31,7 @@ async def start(c, m, cb=False):
     # Buttons
     buttons = [
         [
-            InlineKeyboardButton('My Father 👨‍✈️', url=f"https://t.me/{owner_username}"),
+            InlineKeyboardButton('HB4All 💥', url=f"https://t.me/hb4all"),
             InlineKeyboardButton('Help 💡', callback_data="help")
         ],
         [
