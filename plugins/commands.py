@@ -64,8 +64,10 @@ async def start(c, m, cb=False):
             else:
                 user = await c.get_users(int(chat_id)) 
                 caption += "**For More @HB4All **\n\n" 
-       await send_msg.delete()
-       await msg.copy(m.from_user.id, caption=caption)
+
+
+        await send_msg.delete()
+        await msg.copy(m.from_user.id, caption=caption)
        
     else: # sending start message
         await m.reply_text(
