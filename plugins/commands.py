@@ -61,8 +61,7 @@ async def start(c, m, cb=False):
             if chat_id.startswith('-100'):
                 channel = await c.get_chat(int(chat_id))
                 caption += "**For More @HB4All**\n\n" 
-                
-             else:
+            else:
                 user = await c.get_users(int(chat_id)) 
                 caption += "**For More @HB4All **\n\n" 
        await send_msg.delete()
