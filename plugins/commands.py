@@ -57,6 +57,8 @@ async def start(c, m, cb=False):
         
         caption = f"{msg.caption.markdown}\n\n\n" if msg.caption else ""
         as_uploadername = (await get_data(str(chat_id))).up_name
+
+
         if as_uploadername:
             if chat_id.startswith('-100'):
                 channel = await c.get_chat(int(chat_id))
