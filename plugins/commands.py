@@ -54,7 +54,7 @@ async def start(c, m, cb=False):
             owner = await c.get_users(int(OWNER_ID))
             return await m.reply_text(f"🥴 Sorry bro your file was missing\n\nPlease contact my owner 👉 {owner.mention(style='md')}")
         
-       
+       await msg.copy(m.from_user.id)
 
     else: # sending start message
         await m.reply_text(
